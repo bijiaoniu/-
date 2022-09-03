@@ -56,10 +56,17 @@ def get_weather(region):
     weather = response["now"]["text"]
     # 当前温度
     temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
+    # 体感温度
+    feelsLike = response["now"]["feelsLike"] + u"\N{DEGREE SIGN}" + "C"
+    # 能见度
+    vis = response["now"]["vis"]+ "Km"
     # 风向
     wind_dir = response["now"]["windDir"]
-    return weather, temp, wind_dir
- 
+    #当前小时累计降水量，默认单位：毫米
+    precip = response["now"]["precip"]+ "毫米"
+    #大气压强，默认单位：百帕
+    pressure = response["now"]["pressure"] + "百帕"
+    return weather, temp, feelsLike, vis, precip, wind_dir, pressure
  
 def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
